@@ -5,13 +5,14 @@ import styles from "./MainProducts.module.sass";
 const getProducts = async () => {
   try {
     const response = await fetch(
-      `${process.env.SHOPIFY_HOST_NAME}/admin/api/2023-07/products.json`,
+      `https://nu11fm-tq.myshopify.com/admin/api/2023-07/products.json`,
       {
         headers: new Headers({
           "X-Shopify-Access-Token": process.env.SHOPIFY_API_KEY || "",
         }),
       }
     );
+
     const { products } = await response.json();
     return products;
   } catch (error) {
