@@ -2,30 +2,13 @@
 import Image from "next/image";
 import styles from "./MainProducts.module.sass";
 
-const getProducts = async () => {
-  try {
-    const response = await fetch(
-      `https://nu11fm-tq.myshopify.com/admin/api/2023-07/products.json`,
-      {
-        headers: new Headers({
-          "X-Shopify-Access-Token": process.env.SHOPIFY_API_KEY || "",
-        }),
-      }
-    );
-
-    const { products } = await response.json();
-    return products;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const MainProducts = async () => {
-  const products = await getProducts();
+  const response = await fetch("http://localhost:3000/api");
+  const { products } = await response.json();
 
   return (
     <section className={styles.MainProducts}>
-      <h3>✨ New products released!</h3>
+      <h3>✨ New products released 1!</h3>
       <div className={styles.MainProducts__grid}>
         {
           //@ts-ignore
