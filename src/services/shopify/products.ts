@@ -33,3 +33,23 @@ export const getProducts = async (id?: string): Promise<ProductType[]> => {
     console.log(error);
   }
 };
+
+export const getMainProducts = async () => {
+  const response = await fetch(shopifyUrls.products.mainProducts, {
+    headers: new Headers({
+      "X-Shopify-Access-Token": env.SHOPIFY_TOKEN,
+    }),
+    next: {
+      tags: ["main-products"],
+    },
+    // next: {
+    //   revalidate: 10, //Buscar los datos cada 10segundos Incremental Side Rendering
+    // },
+    // cache: 'no-cache'
+    // cache: 'for-cache' Valor por defecto de NextJs Los datos de usuarios no deberian cachearse
+  });
+
+  const { products } = await response.json();
+
+  return products;
+};
