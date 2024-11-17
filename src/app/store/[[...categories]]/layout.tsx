@@ -17,7 +17,7 @@ export default async function Layout({
         <ul className={styles.StoreLayout__list}>
           {
             //@ts-ignore
-            collections.map((collection) => (
+            collections?.map((collection) => (
               <Link
                 key={collection.id}
                 href={"/store/" + collection.handle}
